@@ -1,4 +1,4 @@
-package main.java.coupling02.loose;
+package coupling02.loose;
 
 public class MessageBeanEn implements  MessageBean{
 

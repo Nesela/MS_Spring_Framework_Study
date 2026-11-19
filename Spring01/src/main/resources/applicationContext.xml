@@ -4,5 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="korean" class="coupling03.loose.MessageBeanKo"></bean>
+
+    <bean id="english" class="coupling03.loose.MessageBeanEn"></bean>
 
 </beans>

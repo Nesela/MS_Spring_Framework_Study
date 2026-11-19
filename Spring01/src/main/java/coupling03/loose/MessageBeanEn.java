@@ -1,4 +1,4 @@
-package main.java.coupling03.loose;
+package coupling03.loose;
 
 public class MessageBeanEn implements MessageBean {
 
