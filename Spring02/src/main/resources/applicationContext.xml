@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Address hons = new Address("hong-gd", "soule", "010-1111-1111");-->
+    <bean id="hong01" class="di01.constructor.Address"/>
+
+    <bean id="hong02" class="di01.constructor.Address">
+        <constructor-arg name="name" value="hong-gd"/>
+        <constructor-arg name="addr" value="soule"/>
+        <constructor-arg name="phone" value="010-1111-1111"/>
+    </bean>
+
+    <!--    -->
+    <bean id="lee" class="di01.constructor.Address">
+        <constructor-arg value="lee-ss"/>
+        <constructor-arg value="busan"/>
+        <constructor-arg value="111-1111-1111"/>
+    </bean>
+
+    <bean id="hong" class="di02.property.Address">
+        <property name="name" value="hong"/>
+        <property name="addr" value="seoul"/>
+        <property name="phone" value="010-2222-2222"/>
+    </bean>
+
+    <bean id="lee-ss" class="di02.property.Address"
+          p:name="lee-ss"
+          p:addr="busna"
+          p:phone="111-1111-1111">
+    </bean>
+    <!--
+        Person you = new Person("유재석", 10);
+        Person kan = new Person();
+        kang.setName("강호동);
+        kang.setAge(20);
+    -->
+    <bean id="you" class="di03.tag.Person" c:_0="유재석" c:_1="10"/>
+    <bean id="kang" class="di03.tag.Person" p:name="강호동" p:age="20"/>
+
+    <bean id="jo" class="di04.ref.Person" p:name="조세호" p:age="30"/>
+    <bean id="address" class="di04.ref.Address">
+        <constructor-arg index="0" ref="jo"/>
+        <constructor-arg index="1" value="kang-nam"/>
+    </bean>
+
+    <bean id="jaebeom" class="di05.autowire.Person" c:_0="박재범" c:_1="20"/>
+    <bean id="auto" class="di05.autowire.Address" autowire="byType">
+        <property name="address" value="서울"/>
+    </bean>
+
+    <!--
+    no : (default) 자동 주입 안 함. ref 속성으로 직접 연결해야 함
+    byName : Setter 이름과 동일한 id를 가진 Bean을 자동으로 찾아 주입
+    byType : 파라미터와 동일한 타입(클래스)의 Bean을 자동 주입 (2개 이상이면 에러)
+    constructor : 생성자 파라미터 타입과 일치하는 Bean을 자동 주입 (정확히 1개가 아니면 에러)
+    -->
+
+    <bean id="singleton" class="di06.factory.WeekDay" factory-method="getInstance"/>
+</beans>
