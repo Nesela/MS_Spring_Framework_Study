@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- cc -->
+    <bean id="dev" class="aop02.advisor.Developer"/>
+    <bean id="engi" class="aop02.advisor.Engineer"/>
+
+    <!-- ccc -->
+    <bean id="myAdvice" class="aop02.advisor.MyAspect"/>
+
+    <!-- proxy -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    <!-- advisor -->
+    <bean id="myAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+        <property name="advice" ref="myAdvice"/>
+        <property name="expression" value="execution(public * *(..))"/>
+    </bean>
+
+</beans>
+
+

@@ -4,6 +4,8 @@
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/Spring01/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/Spring02/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/Spring03/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/Spring04/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -12,6 +14,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Spring02" />
         <module name="Spring01" />
+        <module name="Spring04" />
+        <module name="Spring03" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="dev" class="aop03.config.Developer"/>
+    <bean id="engi" class="aop03.config.Engineer"/>
+    <bean id="myAspect" class="aop03.config.MyAspect"/>
+
+    <aop:config>
+        <aop:aspect ref="myAspect">
+            <aop:before method="before" pointcut="execution(public * *(..))"/>
+            <aop:after method="after" pointcut="execution(public * * (..))"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
+
+
