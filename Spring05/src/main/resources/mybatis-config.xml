@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--  1. properties load  -->
+    <properties resource="db.properties"/>
+    <!--  2. dto 연결  -->
+    <typeAliases>
+        <package name="mybatis01.basic"/>
+    </typeAliases>
+
+    <!--  3. environments 설정  -->
+
+    <environments default="development">
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 4. mapper 설정 -->
+    <mappers>
+        <mapper resource="mybatis-mapper.xml"/>
+    </mappers>
+</configuration>
