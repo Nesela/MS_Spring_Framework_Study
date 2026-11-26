@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis03.dynamic.BoardMapper">
+
+    <select id="selectAll" resultType="BoardDto">
+        SELECT *
+        FROM board
+    </select>
+
+    <select id="search" parameterType="BoardDto" resultType="BoardDto">
+        SELECT *
+        FROM board
+        <where>
+            <if test="writer != null">
+                AND writer = #{writer}
+            </if>
+            <if test="title != null">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="searchByType" resultType="BoardDto">
+        SELECT *
+        FROM board
+        <where>
+            <choose>
+                <when test="type == 'writer'">
+                    writer LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="type == 'title'">
+                    title LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="type == 'content'">
+                    content LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <otherwise>
+                    1 = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <update id="dynamicUpdate" parameterType="BoardDto">
+        UPDATE board
+        <set>
+            <if test="writer != null">
+                writer = #{writer},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectByIdList" resultType="BoardDto">
+        SELECT *
+        FROM board
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>
